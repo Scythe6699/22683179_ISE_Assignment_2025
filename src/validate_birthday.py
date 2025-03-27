@@ -14,31 +14,36 @@ def validate_birthday(birthday):
     if (day.isdigit() == False) or (year.isdigit() == False):
         raise ValueError("Invalid Input!\nError: Invalid Day or Year!")
     
-    # check day, month & year range
-    if (0 > year > 2025) or (0 > int(month) > 12) or (0 > int(day) > 31):
+    # check day & year range
+    if (0 > year > 2025) or (0 > int(day) > 31):
         raise ValueError("Invalid Input!\nError: Out of range")
     
     _is_leap_ = False
     # check if leap year
-    if ( year % 4 == 0 and year % 100 != 0 ) or ( year % 400 == 0 ):
+    if (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0):
         _is_leap_ = True
     
     # calendar
     calendar = {
-        1: ["january", 31],
-        2: ["february", 28],
-        3: ["march", 31],
-        4: ["april", 30],
-        5: ["may", 31],
-        6: ["june", 30],
-        7: ["july", 31],
-        8: ["august", 31],
-        9: ["september", 31],
-        10: ["october", 31],
-        11: ["november", 31],
-        12: ["december", 31]
+        "january": [1, 31],
+        "february": [2, 28],
+        "march": [3, 31],
+        "april": [4, 30],
+        "may": [5, 31],
+        "june": [6, 30],
+        "july": [7, 31],
+        "august": [8, 31],
+        "september": [9, 30],
+        "october": [10, 31],
+        "november": [11, 30],
+        "december": [12, 31]
     }
 
-    
+    # month name abbreviations --> e.g., "jan": "january"
+    calendar_abbr = {m[:3]: m for m in calendar.keys()}    
 
+    # check month
+    if (month.lower() not in calendar) and (month.lower() not in calendar_abbr):
+        raise ValueError("Invalid Input!\nError: Invalid Month!")
+    
     
