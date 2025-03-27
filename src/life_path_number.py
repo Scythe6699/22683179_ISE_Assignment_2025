@@ -32,12 +32,10 @@ def life_path_number(day, month, year):
     total = day + month + year
 
     ## check if total is master
-    _is_master_ = False
     if total in master_num:
-        _is_master_ = True
-        return total, _is_master_
+        return total
 
     ## sum of total digits
     output = add_digit(total)
     
-    return output, _is_master_
+    return output
