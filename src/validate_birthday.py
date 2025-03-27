@@ -1,27 +1,25 @@
 def validate_birthday(birthday):
+    # correct format
     birthday_list = str(birthday).split()
-
-    # handle error when input not in the correct format
     if len(birthday_list) < 3:
         raise ValueError("Invalid Input!\nError: Incorrect Format!")
-
+    
     # get the data
     day = birthday_list[0]
     month = birthday_list[1]
-    year = birthday_list[0]
-
+    year = birthday_list[2]
+    
     # check day and year
-    if (day.isdigit() == False) or (year.isdigit() == False):
+    if (not day.isdigit()) or (not year.isdigit()):
         raise ValueError("Invalid Input!\nError: Invalid Day or Year!")
     
-    # check day & year range
-    if (0 > year > 2025) or (0 > int(day) > 31):
-        raise ValueError("Invalid Input!\nError: Out of range")
+    # convert day and year to int
+    day = int(day)
+    year = int(year)
     
-    _is_leap_ = False
-    # check if leap year
-    if (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0):
-        _is_leap_ = True
+    # check day & year range
+    if year < 0 or year > 2025 or day < 1 or day > 31:
+        raise ValueError("Invalid Input!\nError: Out of range")
     
     # calendar
     calendar = {
@@ -38,12 +36,29 @@ def validate_birthday(birthday):
         "november": [11, 30],
         "december": [12, 31]
     }
-
+    
     # month name abbreviations --> e.g., "jan": "january"
-    calendar_abbr = {m[:3]: m for m in calendar.keys()}    
-
+    calendar_abbr = {m[:3]: m for m in calendar.keys()}
+    
+    # check if leap year
+    is_leap = (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0)
+    if is_leap:
+        calendar["february"] = [2, 29]
+        calendar_abbr["feb"] = [2, 29]
+    
+    # normalize month
+    month = month.lower()
+    if month in calendar_abbr:
+        month = calendar_abbr[month]
+    
     # check month
-    if (month.lower() not in calendar) and (month.lower() not in calendar_abbr):
+    if month not in calendar:
         raise ValueError("Invalid Input!\nError: Invalid Month!")
     
+    # check day
+    max_day = calendar[month][1]
+    if day > max_day:
+        raise ValueError("Invalid Input!\nError: Invalid Day!")
     
+    # return
+    return day, calendar[month][0], year
