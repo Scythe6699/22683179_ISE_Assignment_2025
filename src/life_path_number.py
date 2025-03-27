@@ -41,5 +41,3 @@ def life_path_number(day, month, year):
     output = add_digit(total)
     
     return output, _is_master_
-    
-print(life_path_number(13, 11, 1987))
