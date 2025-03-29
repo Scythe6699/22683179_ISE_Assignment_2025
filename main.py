@@ -1,4 +1,3 @@
-# main.py
 # import modules
 from src.validate_birthday import validate_birthday
 from src.life_path_number import life_path_number
