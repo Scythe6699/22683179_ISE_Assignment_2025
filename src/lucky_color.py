@@ -14,5 +14,7 @@ def lucky_color(lpn):
         22: "White",
         33: "Crimson"
     }
-
+    # Check if lpn is valid
+    if lpn not in color:
+        raise ValueError(f"Invalid Life Path Number: {lpn}")
     return color[lpn]
