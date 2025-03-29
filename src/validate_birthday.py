@@ -18,7 +18,7 @@ def validate_birthday(birthday):
     year = int(year)
     
     # check day & year range
-    if year < 0 or year > 2025 or day < 1 or day > 31:
+    if year < 1925 or year > 2025 or day < 1 or day > 31:
         raise ValueError("Invalid Input!\nError: Out of range")
     
     # calendar
@@ -44,11 +44,18 @@ def validate_birthday(birthday):
     is_leap = (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0)
     if is_leap:
         calendar["february"] = [2, 29]
-        calendar_abbr["feb"] = [2, 29]
     
     # normalize month
     month = month.lower()
-    if month in calendar_abbr:
+    if month.isdigit():
+        month_num = int(month)
+        for m, vals in calendar.items():
+            if vals[0] == month_num:
+                month = m
+                break
+        else:
+            raise ValueError("Invalid Input!\nError: Invalid Month!")
+    elif month in calendar_abbr:
         month = calendar_abbr[month]
     
     # check month
