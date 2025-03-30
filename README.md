@@ -1,6 +1,6 @@
 # Murad Nabil_22683179_ISEReport
 
-- **Assessment:** Introductionto Software Engineering– ISAD1000/5004 2024 Trimester 1
+- **Assessment:** Introduction to Software Engineering– ISAD1000/5004 2024 Trimester 1
 - **Assignment:** Final Assessment - (Assignment Specification V1)
 - **Student Name:** Nabil Murad  
 - **Student ID:** 22683179 
@@ -331,34 +331,15 @@ This project demonstrates a solid application of modularity, thorough testing (b
 
 ## Appendices
 
-### Appendix A: Folder Structure
-
-```
-/
-├── src/
-│   ├── __init__.py
-│   ├── validate_birthday.py
-│   ├── life_path_number.py
-│   ├── lucky_color.py
-│   └── generation_checker.py
-├── tests/
-│   ├── __init__.py
-│   ├── test_validate_birthday.py
-│   ├── test_life_path_number.py
-│   ├── test_lucky_color.py
-│   └── test_generation_checker.py
-└── main.py
-```
-
-### Appendix B: Sample Screenshots
+### Sample Screenshots
 
 ![Screenshot from 2025-03-30 07-05-22](https://github.com/user-attachments/assets/a56035ce-e499-4af1-b554-bbfc9415a74c)
-**Figure:** Program Output
+**Figure:** Program Output.
 
 ![Screenshot from 2025-03-30 07-05-43](https://github.com/user-attachments/assets/97cfd51c-f941-433e-80dd-ed78d428cff4)
-**Figure:** Unittesing
+**Figure:** Unittesting.
 
-### Appendix C: Git Log
+### Git Log
 **Git Repository:** [https://github.com/Scythe6699/22683179_ISE_Assignment_2025.git](https://github.com/Scythe6699/Murad_Nabil_22683179_ISEReport.git)
 
 **Branch Plan:**
@@ -372,10 +353,10 @@ This project demonstrates a solid application of modularity, thorough testing (b
 Please check the ‘git_log.txt’ for log files or type ```git --no-pager log > git_log.txt``` in the cloned repository folder.
 
 ![Firefox_Screenshot_2025-03-30T07-13-27 305Z](https://github.com/user-attachments/assets/8e3a90fb-1f59-4904-be9a-558215760edf)
-**Figure:** Git Commits 1
+**Figure:** Git Commits 1.
 
 ![Firefox_Screenshot_2025-03-30T07-13-50 877Z](https://github.com/user-attachments/assets/7a3f6e54-ea6b-46cd-9826-508b8b380759)
-**Figure:** Git Commits 2
+**Figure:** Git Commits 2.
 
 
 
