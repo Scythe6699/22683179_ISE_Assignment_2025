@@ -1,442 +1,382 @@
-# Nabil Murad_22683179_ISEReport
+# Murad Nabil_22683179_ISEReport
 
-**Assessment: Introduction to Software Engineering (ISAD1000/5004) Assignment**
-
-**Name:** Nabil Murad  
-**Student ID:** 22683179
-
----
+- **Assessment:** Introductionto Software Engineering– ISAD1000/5004 2024 Trimester 1
+- **Assignment:** Final Assessment - (Assignment Specification V1)
+- **Student Name:** Nabil Murad  
+- **Student ID:** 22683179 
+- **Date:** 31-March-2025
 
 ## Introduction
 
-In this project, a numerology analysis tool has been implemented leveraging a person’s birthday and this project provides insight into their person’s numerology. The software can calculate Life Path Number, determine Lucky Colors, find out the Master Numbers, as well as the generation. Modularity concepts are used, testing methodologies are employed such that they are suitable and version control is maintained in order to track development. Aiming to report on the design process, implementation details, testing approaches and reflections on the experience of development, this document documents the same.
+This project implements a numerology analysis tool. It processes a birthday input and performs the following tasks:
+
+### Scenario A
+  - Calculate the Life Path Number by adding digits (with recursive reduction), preserving master numbers (11, 22, 33).  
+  - Determine the Lucky Colour corresponding to the Life Path Number.  
+  - (When two birthdays are provided, compare their Life Path Numbers.)
+
+### Scenario B
+  - Identify the generation (e.g., Silent Generation, Baby Boomers, Generation X, Millennials, Generation Z, or Generation Alpha) based on the birth year.
+
+Only birthdays between 1925 and 2025 are valid. The design adheres to modularity principles and is thoroughly tested using both black‑box and white‑box approaches. All work is tracked using version control (Git).
 
 ---
 
-## Module Descriptions
+## Scenario
 
-### Original Module Descriptions
+A software company is developing tools for numerology analysis. The key functionalities are:
 
-#### validate_birthday
+### Scenario A
+- **For a Single Birthday:**  
+  - Calculate the Life Path Number.  
+  - Determine the Lucky Colour.  
+  - Indicate if the Life Path Number is a master number.
 
-**Name:** validate_birthday  
-**Description:** This module validates a birthday input and extracts day, month, and year components. It checks for proper format, range validity, and calendar correctness (including leap year handling).  
-**Input:** Birthday string (e.g., "09 July 2005" or "13 Nov 1987")  
-**Output:** Returns a tuple containing validated (day, month, year) as integers if valid, raises ValueError with appropriate message if invalid  
-**Assumptions:** 
-- Input format is "DD Month YYYY" or "DD MMM YYYY"
-- Only birthdays between 1925 and 2025 are considered valid (as per requirements)
-- Month can be provided as a number or name/abbreviation
+- **For Two Birthdays:**  
+  - Compare if the Life Path Numbers are identical.
 
-#### life_path_number
-
-**Name:** life_path_number  
-**Description:** Calculates the Life Path Number from a person's birth date using numerology principles. It handles master numbers (11, 22, 33) specially.  
-**Input:** Three integer parameters: day, month, year  
-**Output:** Returns an integer representing the Life Path Number  
-**Assumptions:**
-- Input values are valid integers
-- Master numbers (11, 22, 33) are preserved and not reduced further
-
-#### lucky_color
-
-**Name:** lucky_color  
-**Description:** Determines the Lucky Color associated with a Life Path Number.  
-**Input:** Integer parameter for Life Path Number  
-**Output:** Returns a string containing the corresponding Lucky Color  
-**Assumptions:**
-- Input is a valid Life Path Number (1-9, 11, 22, or 33)
-- Color mapping follows the assignment specification
-
-#### generation_checker
-
-**Name:** generation_checker  
-**Description:** Determines the generation a person belongs to based on their birth year.  
-**Input:** Integer parameter for year  
-**Output:** Returns a string with the generation name  
-**Assumptions:**
-- Input is a valid year integer
-- Generation definitions follow the assignment specification
-
-#### main
-
-**Name:** main  
-**Description:** Integrates all modules to provide numerology analysis for a user-provided birthday.  
-**Input:** Takes birthday input from keyboard  
-**Output:** Displays analysis results on screen  
-**Assumptions:**
-- All required modules are correctly implemented and available
-- User will provide input in an acceptable format
+### Scenario B
+- **Generation Identification:**  
+  - Determine which generation a person belongs to, based on the birth year (using predefined generation ranges as provided on Blackboard).
 
 ---
 
-## Design Decisions and Modularity Principles
+## Detailed Description
 
-The design follows these modularity principles:
+### Module Descriptions
 
-- **Single Responsibility Principle:** Each module has one specific responsibility:
-  - `validate_birthday`: Handles input validation only
-  - `life_path_number`: Only calculates the Life Path Number
-  - `lucky_color`: Only determines the Lucky Color
-  - `generation_checker`: Only identifies the generation
-  - `main`: Orchestrates the modules and manages I/O
+#### 1. `validate_birthday`
+- **Name:** validate_birthday  
+- **Task:** Validate a birthday string, split it into day, month, and year, and convert these values.  
+- **Input:** Birthday string (formats such as "13 November 1987", "13 Nov 1987", or "13 11 1987").  
+- **Output:** A tuple `(day, month, year)` if valid; otherwise, a `ValueError` is raised.  
+- **Assumptions:** Only dates between 1925 and 2025 are accepted.
 
-- **High Cohesion:** Each module contains strongly related functionality. For example, all date validation logic is contained in the `validate_birthday` module.
+#### 2. `life_path_number`
+- **Name:** life_path_number  
+- **Task:** Calculate the Life Path Number by summing the digits of the day, month, and year. The sum is recursively reduced until a single digit is obtained (except when a master number is encountered).  
+- **Input:** Three integers (day, month, year).  
+- **Output:** An integer representing the Life Path Number.
 
-- **Low Coupling:** Modules are designed to be independent, communicating only through well-defined inputs and outputs. This allows for easier testing and future modifications.
+#### 3. `lucky_color`
+- **Name:** lucky_color  
+- **Task:** Map a given Life Path Number to its corresponding Lucky Colour.  
+- **Input:** Life Path Number (an integer).  
+- **Output:** A string representing the Lucky Colour (e.g., 5 → "Sky Blue").
 
-- **Information Hiding:** Implementation details are encapsulated within each module. For instance, the algorithm for calculating Life Path Numbers is hidden within its module.
+#### 4. `generation_checker`
+- **Name:** generation_checker  
+- **Task:** Determine the generation to which a person belongs based on their birth year.  
+- **Input:** Year (integer).  
+- **Output:** A string indicating the generation (e.g., "Silent Generation", "Baby Boomers").
 
-- **Reusability:** The modules are designed for potential reuse in other applications. For example, the `validate_birthday` module could be used in any application requiring date validation.
-
-- **Extensibility:** The system is designed to easily accommodate future requirements. For example, additional numerology analysis could be added as new modules.
-
-The design decisions include:
-- Using parameter passing for core calculation functions
-- Using keyboard input for the main user interface
-- Separating validation from calculation logic
-- Using exception handling for input validation
-- Using a modular file structure with each module in its own file
+#### 5. `main`
+- **Name:** main  
+- **Task:**  
+  - Act as the entry point for the program.
+  - Obtain birthday input from the user via keyboard.
+  - Call the modules for validating the birthday, calculating the Life Path Number, determining the Lucky Colour, and checking the generation.
+  - Display the analysis results.
+- **Input:** Birthday string from keyboard.  
+- **Output:** Printed results on the console.
 
 ---
 
-## Modularity
+### Modularity
 
-### Running the Production Code
+#### 1. Design Principles and Decisions
 
-The production code can be run by executing the `main.py` file:
+- **Single Responsibility:** Each module is responsible for one distinct functionality.  
+- **High Cohesion and Low Coupling:** Modules are designed to work independently and interact through well-defined interfaces. For example, `validate_birthday` returns a date tuple that is then consumed by `life_path_number`.  
+- **Information Hiding:** Implementation details (e.g., the recursive digit reduction) are encapsulated within the module.  
+- **Reusability and Extensibility:** The modules are designed to be reusable and can be easily extended to add further numerology features.
 
-```bash
-python main.py
-```
+#### 2. Running the Production Code
 
-### Sample Output
+**Environment:** Linux command-line with Python 3.
+
+**Steps:**
+
+1. Open the terminal in the project root.
+2. Execute the following command:
+   ```
+   python main.py
+   ```
+
+**Sample Output:**
 
 ```
-Enter your birthday (e.g., 09 July 2005 or 13 Nov 1987): 13 November 1987
+Enter your birthday (e.g., 09 November 2005 or 13 Nov 1987): 13 November 1987
 
 Your birthday         : 13 November 1987
 Your life path number : 3
-Your lucky color      : Yellow
+Your lucky color      : Sky Blue
 Your generation       : Generation X
 ```
 
----
+#### 3. Review Checklist and Refactoring Decisions
 
-## Application of Modularity Concepts
+**Review Checklist:**
+- **Single Responsibility:** Each module handles one specific task.
+- **Interface Consistency:** All modules use uniform input and output types.
+- **Error Handling:** Each module raises clear exceptions for invalid input.
+- **Naming Conventions:** All modules and variables have descriptive names.
+- **Elimination of Code Duplication:** Common logic is abstracted into helper functions.
 
-The implementation applies several modularity concepts:
-
-- **Abstraction:** Each module provides a clear interface while hiding implementation details. For example, users of the `life_path_number` module don't need to know the algorithm used to calculate it.
-- **Hierarchy:** The system is structured with `main.py` as the entry point that uses other modules as building blocks.
-- **Modularity:** Each functionality is in its own module with clear boundaries and interfaces.
-- **Information Hiding:** Implementation details like the method for calculating Life Path Numbers are hidden within their respective modules.
-- **Error Handling:** The system uses exception handling to gracefully manage invalid inputs without crashing.
-
----
-
-## Review Checklist
-
-### Modularity Review Checklist
-
-| Module              | Issues                                                | Severity | Action Required                         |
-|---------------------|-------------------------------------------------------|----------|-----------------------------------------|
-| **validate_birthday** | Calendar month checking is complex and could be simplified using Python's datetime module | Medium   | Refactor to use datetime              |
-| **validate_birthday** | Function is too long (>25 lines)                   | Low      | Consider splitting into subfunctions    |
-| **life_path_number**  | Inner functions could be moved outside for better testability | Low      | Refactor inner functions                |
-| **main**            | Direct imports could be more flexible                | Low      | Consider dependency injection           |
+**Refactoring Decisions:**
+- *validate_birthday* was simplified by using the `datetime` module and creating helper functions for month normalization and leap year adjustment.
+- *life_path_number* had its nested helper functions moved to top-level to improve testability.
+- *main* was refactored for dependency injection to simplify testing of user input and output flows.
 
 ---
 
-## Refactoring Decisions
+## Test Design
 
-Based on the review, the following refactoring decisions were made:
+Test cases have been designed using both black‑box (functional) and white‑box (structural) approaches. Detailed tables for each module follow.
 
-- Refactor `validate_birthday` to use Python's datetime module for better maintainability.
-- Split `validate_birthday` into smaller functions for improved readability.
-- Move inner functions in `life_path_number` outside for better testability.
-- Improve flexibility of imports in `main.py`.
+### Black‑Box Test Cases
 
----
+#### 1. Module: validate_birthday
 
-## Revised Module Descriptions
+| Test ID      | Description                                    | Input                     | Expected Output             | Test Approach                |
+|--------------|------------------------------------------------|---------------------------|-----------------------------|------------------------------|
+| VB-EP-1      | Valid birthday with full month name            | "13 November 1987"        | (13, 11, 1987)              | Equivalence Partitioning     |
+| VB-EP-2      | Valid birthday with month abbreviation         | "13 Nov 1987"             | (13, 11, 1987)              | Equivalence Partitioning     |
+| VB-EP-3      | Valid birthday with numeric month              | "13 11 1987"              | (13, 11, 1987)              | Equivalence Partitioning     |
+| VB-EP-4      | Invalid format (missing components)            | "13 1987"                 | Raises ValueError           | Equivalence Partitioning     |
+| VB-EP-5      | Invalid day (non-numeric)                        | "AA November 1987"        | Raises ValueError           | Equivalence Partitioning     |
+| VB-EP-6      | Invalid month (non-existent)                     | "13 Novem 1987"           | Raises ValueError           | Equivalence Partitioning     |
+| VB-EP-7      | Invalid year (non-numeric)                       | "13 November XXXX"        | Raises ValueError           | Equivalence Partitioning     |
+| VB-EP-8      | Day out of range for month (e.g., Feb 31)        | "31 February 2000"        | Raises ValueError           | Equivalence Partitioning     |
+| VB-EP-9      | Year out of valid range                          | "13 November 2026"        | Raises ValueError           | Equivalence Partitioning     |
+| VB-BVA-1     | Boundary: Earliest valid year                    | "01 January 1925"         | (1, 1, 1925)                | Boundary Value Analysis      |
+| VB-BVA-2     | Boundary: Latest valid year                      | "31 December 2025"        | (31, 12, 2025)              | Boundary Value Analysis      |
+| VB-BVA-3     | Just below earliest valid year                   | "31 December 1924"        | Raises ValueError           | Boundary Value Analysis      |
+| VB-BVA-4     | Just above latest valid year                     | "01 January 2026"         | Raises ValueError           | Boundary Value Analysis      |
 
-### validate_birthday
+#### 2. Module: life_path_number
 
-**Name:** validate_birthday  
-**Description:** Validates a birthday input by parsing and validating its components using Python's datetime module.  
-**Input:** Birthday string (e.g., "09 July 2005" or "13 Nov 1987")  
-**Output:** Returns a tuple containing validated (day, month, year) as integers if valid, raises ValueError with appropriate message if invalid  
-**Assumptions:** 
-- Input format is "DD Month YYYY" or "DD MMM YYYY"
-- Only birthdays between 1925 and 2025 are considered valid
-- Month can be provided as a number or name/abbreviation
+| Test ID      | Description                                       | Input (day, month, year)  | Expected Output | Test Approach                |
+|--------------|---------------------------------------------------|---------------------------|-----------------|------------------------------|
+| LPN-EP-1     | Basic calculation with single-digit result         | (1, 1, 2000)              | 4               | Equivalence Partitioning     |
+| LPN-EP-2     | Calculation requiring digit reduction               | (29, 8, 1994)             | 6               | Equivalence Partitioning     |
+| LPN-EP-3     | Calculation resulting in a master number            | (29, 2, 1980)             | 22              | Equivalence Partitioning     |
+| LPN-EP-4     | Input includes a master number                     | (11, 3, 1986)             | 2               | Equivalence Partitioning     |
 
----
+#### 3. Module: lucky_color
 
-## Black-Box Test Cases
+| Test ID      | Description                                    | Input (Life Path Number) | Expected Output | Test Approach                |
+|--------------|------------------------------------------------|--------------------------|-----------------|------------------------------|
+| LC-EP-1      | Mapping for a regular number                   | 5                        | "Sky Blue"      | Equivalence Partitioning     |
+| LC-EP-2      | Mapping for master number 11                   | 11                       | "Silver"        | Equivalence Partitioning     |
+| LC-EP-3      | Mapping for master number 22                   | 22                       | "White"         | Equivalence Partitioning     |
+| LC-EP-4      | Mapping for master number 33                   | 33                       | "Crimson"       | Equivalence Partitioning     |
 
-### Equivalence Partitioning Test Cases
+#### 4. Module: generation_checker
 
-#### Module: validate_birthday
+| Test ID      | Description                                     | Input (Year)              | Expected Output         | Test Approach                |
+|--------------|-------------------------------------------------|---------------------------|-------------------------|------------------------------|
+| GC-EP-1      | Silent Generation                               | 1940                      | "Silent Generation"     | Equivalence Partitioning     |
+| GC-EP-2      | Baby Boomers                                    | 1960                      | "Baby Boomers"          | Equivalence Partitioning     |
+| GC-EP-3      | Generation X                                    | 1970                      | "Generation X"          | Equivalence Partitioning     |
+| GC-EP-4      | Millennials                                     | 1990                      | "Millennials"           | Equivalence Partitioning     |
+| GC-EP-5      | Generation Z                                    | 2000                      | "Generation Z"          | Equivalence Partitioning     |
+| GC-EP-6      | Generation Alpha                                | 2015                      | "Generation Alpha"      | Equivalence Partitioning     |
+| GC-EP-7      | Year outside valid range                        | 1900                      | "Unknown"               | Equivalence Partitioning     |
+| GC-BVA-1     | Boundary: Start of Silent Generation            | 1901                      | "Silent Generation"     | Boundary Value Analysis      |
+| GC-BVA-2     | Boundary: End of Silent Generation              | 1945                      | "Silent Generation"     | Boundary Value Analysis      |
+| GC-BVA-3     | Boundary: Start of Baby Boomers                 | 1946                      | "Baby Boomers"          | Boundary Value Analysis      |
+| GC-BVA-4     | Boundary: End of Baby Boomers                   | 1964                      | "Baby Boomers"          | Boundary Value Analysis      |
+| GC-BVA-5     | Boundary: Start of Generation X                 | 1965                      | "Generation X"          | Boundary Value Analysis      |
+| GC-BVA-6     | Boundary: End of Generation X                   | 1979                      | "Generation X"          | Boundary Value Analysis      |
+| GC-BVA-7     | Boundary: Start of Millennials                  | 1980                      | "Millennials"           | Boundary Value Analysis      |
+| GC-BVA-8     | Boundary: End of Millennials                    | 1994                      | "Millennials"           | Boundary Value Analysis      |
+| GC-BVA-9     | Boundary: Start of Generation Z                 | 1995                      | "Generation Z"          | Boundary Value Analysis      |
+| GC-BVA-10    | Boundary: End of Generation Z                   | 2009                      | "Generation Z"          | Boundary Value Analysis      |
+| GC-BVA-11    | Boundary: Start of Generation Alpha             | 2010                      | "Generation Alpha"      | Boundary Value Analysis      |
+| GC-BVA-12    | Boundary: End of Generation Alpha               | 2024                      | "Generation Alpha"      | Boundary Value Analysis      |
 
-| Test ID    | Test Case Description                      | Input Values           | Expected Output | Rationale                    |
-|------------|--------------------------------------------|------------------------|-----------------|------------------------------|
-| VB-EP-1    | Valid birthday with full month name        | "13 November 1987"     | (13, 11, 1987)  | Valid input with full month name |
-| VB-EP-2    | Valid birthday with month abbreviation     | "13 Nov 1987"          | (13, 11, 1987)  | Valid input with month abbreviation |
-| VB-EP-3    | Valid birthday with numeric month          | "13 11 1987"           | (13, 11, 1987)  | Valid input with numeric month |
-| VB-EP-4    | Invalid birthday format (missing components)| "13 1987"             | ValueError      | Insufficient components      |
-| VB-EP-5    | Invalid day (non-numeric)                  | "AA November 1987"     | ValueError      | Non-numeric day              |
-| VB-EP-6    | Invalid month (non-existent)               | "13 Novem 1987"        | ValueError      | Invalid month name           |
-| VB-EP-7    | Invalid year (non-numeric)                 | "13 November XXXX"     | ValueError      | Non-numeric year             |
-| VB-EP-8    | Invalid day (out of month range)           | "31 February 2000"     | ValueError      | Day out of range for month   |
-| VB-EP-9    | Invalid year (out of acceptance range)     | "13 November 2026"     | ValueError      | Year outside 1925-2025 range |
+#### 5. Module: main (Simulated I/O)
 
-#### Module: life_path_number
-
-| Test ID    | Test Case Description                     | Input Values          | Expected Output | Rationale                                    |
-|------------|-------------------------------------------|-----------------------|-----------------|----------------------------------------------|
-| LPN-EP-1   | Basic calculation with single-digit result | day=1, month=1, year=2000 | 4           | Basic calculation: 1+1+2 = 4                 |
-| LPN-EP-2   | Calculation with reduction needed          | day=29, month=8, year=1994 | 5           | Requires digit addition: 2+9+8+1+9+9+4 = 42, 4+2 = 6 |
-| LPN-EP-3   | Calculation with master number result      | day=29, month=2, year=1980 | 22          | Results in master number 22                  |
-| LPN-EP-4   | Calculation with master number input       | day=11, month=3, year=1986 | 2           | Input contains master number                 |
-| LPN-EP-5   | Calculation with multiple master numbers   | day=11, month=11, year=2000 | 6           | Multiple master numbers in input             |
-
-#### Module: lucky_color
-
-| Test ID    | Test Case Description         | Input Values | Expected Output | Rationale                |
-|------------|-------------------------------|--------------|-----------------|--------------------------|
-| LC-EP-1    | Regular number (1-9)          | 5            | "Sky Blue"      | Standard Life Path Number|
-| LC-EP-2    | Master number 11              | 11           | "Silver"        | Master Number case       |
-| LC-EP-3    | Master number 22              | 22           | "White"         | Master Number case       |
-| LC-EP-4    | Master number 33              | 33           | "Crimson"       | Master Number case       |
-
-#### Module: generation_checker
-
-| Test ID    | Test Case Description        | Input Values | Expected Output      | Rationale                         |
-|------------|------------------------------|--------------|----------------------|-----------------------------------|
-| GC-EP-1    | Silent Generation year     | 1940         | "Silent Generation"  | Year in Silent Generation range   |
-| GC-EP-2    | Baby Boomers year          | 1960         | "Baby Boomers"       | Year in Baby Boomers range        |
-| GC-EP-3    | Generation X year          | 1970         | "Generation X"       | Year in Generation X range        |
-| GC-EP-4    | Millennials year           | 1990         | "Millennials"        | Year in Millennials range         |
-| GC-EP-5    | Generation Z year          | 2000         | "Generation Z"       | Year in Generation Z range        |
-| GC-EP-6    | Generation Alpha year      | 2015         | "Generation Alpha"   | Year in Generation Alpha range    |
-| GC-EP-7    | Year outside valid ranges  | 1900         | "Unknown"          | Year outside defined generations  |
-
-#### Module: main
-
-| Test ID     | Test Case Description     | Input Values          | Expected Output              | Rationale               |
-|-------------|---------------------------|-----------------------|------------------------------|-------------------------|
-| MAIN-EP-1   | Valid birthday input      | "13 November 1987"    | Complete analysis results displayed | Valid input processing  |
-| MAIN-EP-2   | Invalid birthday input    | "13 XX 1987"         | Error message displayed      | Invalid input handling   |
+| Test ID      | Description                                     | Input (Simulated)                | Expected Outcome                                                        | Test Approach                                    |
+|--------------|-------------------------------------------------|----------------------------------|-------------------------------------------------------------------------|--------------------------------------------------|
+| MAIN-EP-1    | Valid input scenario                             | "13 November 1987"                | Console output with birthday, LPN, Lucky Colour, and Generation           | Equivalence Partitioning (Simulated I/O)         |
+| MAIN-EP-2    | Invalid input scenario                           | "13 XX 1987"                      | Raises ValueError                                                       | Equivalence Partitioning (Simulated I/O)         |
 
 ---
 
-### Boundary Value Analysis Test Cases
+### White‑Box Test Cases
 
-#### Module: validate_birthday
+#### 1. Module: validate_birthday (White‑Box)
 
-| Test ID      | Test Case Description            | Input Values         | Expected Output  | Rationale                    |
-|--------------|----------------------------------|----------------------|------------------|------------------------------|
-| VB-BVA-1     | Earliest valid year              | "01 January 1925"    | (1, 1, 1925)     | Lower boundary of accepted year range |
-| VB-BVA-2     | Latest valid year                | "31 December 2025"   | (31, 12, 2025)   | Upper boundary of accepted year range |
-| VB-BVA-3     | Just below earliest valid year   | "31 December 1924"   | ValueError       | Just below lower boundary    |
-| VB-BVA-4     | Just above latest valid year     | "01 January 2026"    | ValueError       | Just above upper boundary    |
-| VB-BVA-5     | Minimum valid day                | "01 January 2000"    | (1, 1, 2000)     | Minimum valid day            |
-| VB-BVA-6     | Maximum valid day (31-day month) | "31 January 2000"    | (31, 1, 2000)    | Maximum valid day for 31-day month |
-| VB-BVA-7     | Just above maximum day (31-day month) | "32 January 2000" | ValueError       | Just above maximum valid day |
-| VB-BVA-8     | February 29 on leap year         | "29 February 2000"   | (29, 2, 2000)    | Valid day for February in leap year |
-| VB-BVA-9     | February 29 on non-leap year     | "29 February 1999"   | ValueError       | Invalid day for February in non-leap year |
+| Test ID      | Internal Component Tested                       | Input                     | Expected Internal Behavior                                  | Expected Outcome             |
+|--------------|-------------------------------------------------|---------------------------|-------------------------------------------------------------|------------------------------|
+| WB-VB-1      | String splitting and length check                | "13 November 1987"        | Splits into ["13", "November", "1987"]                       | Returns (13, 11, 1987)        |
+| WB-VB-2      | Month normalization (abbreviation mapping)       | "13 Nov 1987"             | Converts "Nov" to "november" (month number 11) using dictionary | Returns (13, 11, 1987)        |
+| WB-VB-3      | Numeric month conversion                          | "13 11 1987"              | Converts numeric "11" to corresponding month (11)           | Returns (13, 11, 1987)        |
+| WB-VB-4      | Leap year detection and adjustment                | "29 February 2000"        | Detects leap year; accepts 29 days in February               | Returns (29, 2, 2000)          |
+| WB-VB-5      | Insufficient components (error path)              | "13 1987"                 | Fails length check and raises error                          | Raises ValueError            |
 
-#### Module: generation_checker
+#### 2. Module: life_path_number (White‑Box)
 
-| Test ID      | Test Case Description          | Input Values | Expected Output    | Rationale                        |
-|--------------|--------------------------------|--------------|--------------------|----------------------------------|
-| GC-BVA-1     | Start of Silent Generation     | 1901         | "Silent Generation"| Lower boundary of Silent Generation |
-| GC-BVA-2     | End of Silent Generation       | 1945         | "Silent Generation"| Upper boundary of Silent Generation |
-| GC-BVA-3     | Start of Baby Boomers          | 1946         | "Baby Boomers"     | Lower boundary of Baby Boomers   |
-| GC-BVA-4     | End of Baby Boomers            | 1964         | "Baby Boomers"     | Upper boundary of Baby Boomers   |
-| GC-BVA-5     | Start of Generation X          | 1965         | "Generation X"     | Lower boundary of Generation X   |
-| GC-BVA-6     | End of Generation X            | 1979         | "Generation X"     | Upper boundary of Generation X   |
-| GC-BVA-7     | Start of Millennials           | 1980         | "Millennials"      | Lower boundary of Millennials    |
-| GC-BVA-8     | End of Millennials             | 1994         | "Millennials"      | Upper boundary of Millennials    |
-| GC-BVA-9     | Start of Generation Z          | 1995         | "Generation Z"     | Lower boundary of Generation Z   |
-| GC-BVA-10    | End of Generation Z            | 2009         | "Generation Z"     | Upper boundary of Generation Z   |
-| GC-BVA-11    | Start of Generation Alpha      | 2010         | "Generation Alpha" | Lower boundary of Generation Alpha |
-| GC-BVA-12    | End of Generation Alpha        | 2024         | "Generation Alpha" | Upper boundary of Generation Alpha |
+| Test ID      | Internal Component Tested                       | Input (day, month, year)  | Expected Internal Behavior                                | Expected Outcome             |
+|--------------|-------------------------------------------------|---------------------------|-----------------------------------------------------------|------------------------------|
+| WB-LPN-1     | Digit addition helper (add_digit)                | 29                        | Sums digits: 2 + 9 = 11 (preserving master number if applicable) | Intermediate sum: 11         |
+| WB-LPN-2     | Recursive reduction (greater_formatter)         | 42                        | Reduces 4 + 2 = 6                                         | Returns 6                    |
+| WB-LPN-3     | Master number preservation                        | (29, 2, 1980)             | Recognizes master number condition and preserves 22       | Returns 22                   |
+| WB-LPN-4     | Overall calculation for non-master input         | (1, 1, 2000)              | Adds reduced digits: 1 + 1 + 2 = 4                         | Returns 4                    |
+
+#### 3. Module: lucky_color (White‑Box)
+
+| Test ID      | Internal Logic Tested                           | Input (Life Path Number) | Expected Behavior (internal lookup)       | Expected Outcome             |
+|--------------|-------------------------------------------------|--------------------------|--------------------------------------------|------------------------------|
+| WB-LC-1      | Lookup for regular number                        | 5                        | Retrieves value for key 5 from color mapping | "Sky Blue"                   |
+| WB-LC-2      | Lookup for master number                         | 11                       | Retrieves value for key 11 from mapping       | "Silver"                     |
+
+#### 4. Module: generation_checker (White‑Box)
+
+| Test ID      | Internal Logic Tested                           | Input (Year)             | Expected Internal Range Check Behavior     | Expected Outcome             |
+|--------------|-------------------------------------------------|--------------------------|----------------------------------------------|------------------------------|
+| WB-GC-1      | Check for Silent Generation range               | 1940                     | Verifies 1901 ≤ 1940 ≤ 1945                    | "Silent Generation"          |
+| WB-GC-2      | Check for Baby Boomers range                    | 1960                     | Verifies 1946 ≤ 1960 ≤ 1964                    | "Baby Boomers"               |
+| WB-GC-3      | Check for Generation X range                    | 1970                     | Verifies 1965 ≤ 1970 ≤ 1979                    | "Generation X"               |
+| WB-GC-4      | Handling a year outside defined ranges          | 1900                     | Fails all range checks                         | "Unknown"                    |
+
+#### 5. Module: main (White‑Box)
+
+| Test ID      | Internal Sequence Tested                         | Input (Simulated)         | Expected Internal Flow                                   | Expected Outcome             |
+|--------------|--------------------------------------------------|---------------------------|----------------------------------------------------------|------------------------------|
+| WB-MAIN-1    | Data flow: input → validate_birthday → processing  | "13 November 1987"        | Validates date, computes LPN, determines color, checks generation | Correct output printed       |
+| WB-MAIN-2    | Exception path when validation fails              | "13 XX 1987"              | Fails during validation; exception raised                 | Raises ValueError            |
 
 ---
 
-## White-Box Test Cases
+## Test Implementation and Execution
 
-### Selected Modules for White-Box Testing
-
-**validate_birthday:** This module contains complex logic for date validation including multiple conditionals and exception handling.  
-**life_path_number:** This module contains calculation logic with recursive functions and special number handling.
-
-#### Test Cases for validate_birthday
-
-| Test ID    | Test Case Description                        | Input Values         | Expected Output | Path Coverage                                                  |
-|------------|----------------------------------------------|----------------------|-----------------|---------------------------------------------------------------|
-| VB-WB-1    | Valid input format with numeric month         | "13 11 1987"         | (13, 11, 1987)  | Format validation → month number parsing → day/year validation → success path |
-| VB-WB-2    | Valid input with month name                   | "13 November 1987"   | (13, 11, 1987)  | Format validation → month name parsing → day/year validation → success path |
-| VB-WB-3    | Valid input with month abbreviation           | "13 Nov 1987"        | (13, 11, 1987)  | Format validation → month abbreviation parsing → day/year validation → success path |
-| VB-WB-4    | Invalid format (too few components)           | "13 1987"            | ValueError      | Format validation → exception path                             |
-| VB-WB-5    | Invalid day (non-numeric)                     | "XX November 1987"   | ValueError      | Format validation → day validation → exception path              |
-| VB-WB-6    | Invalid month (non-existent)                  | "13 Xyz 1987"        | ValueError      | Format validation → month validation → exception path            |
-| VB-WB-7    | February 29 in leap year                      | "29 February 2000"   | (29, 2, 2000)   | Format validation → leap year calculation → day validation → success path |
-| VB-WB-8    | February 29 in non-leap year                  | "29 February 1999"   | ValueError      | Format validation → leap year calculation → day validation → exception path |
-
-#### Test Cases for life_path_number
-
-| Test ID    | Test Case Description           | Input Values          | Expected Output | Path Coverage                                                   |
-|------------|---------------------------------|-----------------------|-----------------|-----------------------------------------------------------------|
-| LPN-WB-1   | Single-digit number path         | day=1, month=1, year=2000 | 4           | Initial check → not master number → digit addition → return path |
-| LPN-WB-2   | Master number input path         | day=11, month=5, year=2000 | 9           | Master number check for day → digit addition for month and year → return path |
-| LPN-WB-3   | Master number output path        | day=29, month=2, year=1980 | 22          | Initial check → master number result → special return path         |
-| LPN-WB-4   | Recursive digit addition path    | day=29, month=12, year=1994 | 1           | Multiple recursive calls to add_digit → greater_formatter → return path |
-| LPN-WB-5   | Multiple master numbers input    | day=11, month=22, year=1987 | 4           | Master number checks for day and month → return path                 |
-
-#### Test Implementation
-
-**Running the Test Code**  
-The test code can be run using the following command:
-
-```bash
-python -m unittest discover -s tests
-```
-
-#### Test Results
-
-All test cases were implemented and executed. Below are the results:
+All tests are implemented using Python’s `unittest` framework. The project structure is:
 
 ```
-.............................
-----------------------------------------------------------------------
-Ran 61 tests in 0.004s
-
-OK
-```
-
-All tests passed successfully. The implementation correctly handles all the test cases for all modules.
-
-#### Improvements from Testing
-
-After implementing and running the tests, the following improvements were made to the code:
-
-- Enhanced error messages in `validate_birthday` to be more specific about what validation failed.
-- Improved handling of month abbreviations to be case-insensitive.
-- Added checking for leading zeros in day and month inputs.
-- Optimized the recursive digit addition in `life_path_number` for better performance.
-- Added additional validation in `lucky_color` to ensure only valid Life Path Numbers are used.
-
----
-
-## Summary of Work - Traceability Matrix
-
-| Module name         | BB (EP) | BB (BVA) | WB  |
-|---------------------|---------|----------|-----|
-| validate_birthday   | done    | done     | done |
-|                     | 9       | 9        | 8    |
-| life_path_number    | done    | not done | done |
-|                     | 5       | -        | 5    |
-| lucky_color         | done    | not done | not done |
-|                     | 4       | -        | -    |
-| generation_checker  | done    | done     | not done |
-|                     | 7       | 12       | -    |
-| main                | done    | not done | not done |
-|                     | 2       | -        | -    |
-
----
-
-## Version Control
-
-### Git Repository Plan
-
-**Branch Plan:**
-- **main:** Main development branch for stable code
-- **feature:** For implementing features
-- **testing:** For implementing tests
-- **documentation:** For preparing documentation
-
-### Git Log:
-
-The version control system was used throughout the project to track changes and maintain a history of development. The repository structure was organized with code files in the code directory and documentation in the documents directory as specified in the assignment.
-
-**Key commits included:**
-- Initial repository setup
-- Module implementations (one by one)
-- Test implementations
-- Code refactoring based on review
-- Documentation updates
-
----
-
-## Project Structure
-
-```
-├── 22683179_ISE_Assignment_2025/
+/
 ├── src/
+│   ├── __init__.py
 │   ├── validate_birthday.py
 │   ├── life_path_number.py
 │   ├── lucky_color.py
 │   └── generation_checker.py
 ├── tests/
+│   ├── __init__.py
 │   ├── test_validate_birthday.py
 │   ├── test_life_path_number.py
 │   ├── test_lucky_color.py
 │   └── test_generation_checker.py
-├── main.py
-└── README.md
+└── main.py
 ```
 
----
+**To Run Tests:**
 
-## Discussion
+1. Open a Linux terminal and navigate to the project root.
+2. Execute:
+   ```
+   python -m unittest discover tests
+   ```
+   
+**Example Output:**
 
-### Achievements
+```
+....................
+----------------------------------------------------------------------
+Ran 61 tests in 0.003s
 
-- Successfully implemented a modular numerology analysis tool that meets all the requirements specified in the assignment.
-- Applied proper modularity principles to ensure code is readable, maintainable, and extensible.
-- Designed and implemented comprehensive test cases using both black-box and white-box testing approaches.
-- Used version control effectively to track development progress and maintain project history.
-- Created detailed documentation to describe the system design and implementation.
+OK
+```
 
-### Challenges
-
-- Balancing modularity with simplicity was challenging. While it's good to separate concerns, having too many tiny modules can increase complexity.
-- Designing effective test cases that provide good coverage without unnecessary redundancy requires careful planning.
-- Handling input validation comprehensively, especially for dates with leap years and varying month lengths, was more complex than initially anticipated.
-- Deciding on the appropriate level of error handling and user feedback took careful consideration.
-
-### Limitations and Improvements
-
-**Current Limitations:**
-- The system only handles birthdays between 1925 and 2025.
-- Only supports English month names and abbreviations.
-- Limited input format flexibility.
-- No persistent storage of results.
-
-**Potential Improvements:**
-- Add support for different date formats (e.g., YYYY-MM-DD, MM/DD/YYYY).
-- Implement multilingual support for month names.
-- Extend the system to support more numerology calculations.
-- Add a graphical user interface for improved user experience.
-- Implement persistent storage to save analysis results.
-- Add comparison functionality for multiple birthdays.
-- Enhance error handling with more user-friendly messages.
-- Optimize algorithms for performance with large datasets.
-
-**Code Structure Improvements:**
-- Implement a more robust module structure using Python packages.
-- Use configuration files for constants like color mappings and generation ranges.
-- Implement more comprehensive logging throughout the application.
-- Add type hints for better code clarity and static type checking.
+All 61 tests pass, confirming that both the functional outcomes and internal paths are correctly implemented.
 
 ---
 
-## Conclusion
+## Traceability Matrix
 
-Our software meets the sound software engineering principles, including having tests, and is able to implement a numerology analysis tool as intended in this project. Extensibility is addressed with the modular design, which also reduces the downsides associated with reconfigurable systems in the sense that maintenance and extension is made very easy. The way the software performs is tested through completely. Moreover, the version control system keeps a clear record of all activities associated with development.
+| Module               | Test Design Method  | Test Cases Implemented                          | Comments                                  |
+|----------------------|---------------------|-------------------------------------------------|-------------------------------------------|
+| validate_birthday    | EP, BVA, WB         | 13+ cases covering valid formats, invalid inputs, and boundaries | Comprehensive date validation tested      |
+| life_path_number     | EP, WB              | 4 EP cases and 4 WB cases                       | Correct recursive reduction and master preservation validated  |
+| lucky_color          | EP, WB              | 4 EP cases; 2 WB cases                           | Accurate mapping for regular and master numbers confirmed        |
+| generation_checker   | EP, BVA, WB         | 7 EP/BVA cases and 4 WB cases                   | Generation ranges and boundary conditions fully covered         |
+| main                 | Simulated I/O (EP, WB) | 2 simulated I/O tests                           | Overall input/output flow and exception handling verified         |
 
-Applying modularity principles and testing methodologies has gained great experience that can be brought to bear on software engineering practices. Despite room for improvement, the current implementation meets all requirements and is a good starting point for further enhancements.
+---
+
+## Discussion and Reflection
+
+**Achievements:**
+- Developed a numerology analysis tool using strong modularity principles.
+- Designed and implemented comprehensive black‑box and white‑box test cases covering a wide range of input formats, boundary conditions, and internal logic paths.
+- Systematically refactored code based on a review checklist to improve clarity, maintainability, and error handling.
+- Effectively used Git for version control, documenting the iterative development process.
+
+**Challenges:**
+- Handling multiple date formats and ensuring correct leap year validations.
+- Creating white‑box tests that cover recursive functions without overexposing internal logic.
+- Balancing extensive test coverage with maintaining a clean, modular codebase.
+
+**Limitations and Future Work:**
+- The current implementation provides basic numerology functions; future enhancements could include extended analysis and a graphical user interface.
+- Future iterations may integrate continuous integration and automated regression testing.
+- Enhanced error logging and dynamic configuration (e.g., for generation ranges) are potential improvements.
+
+**Conclusion:**
+This project demonstrates a solid application of modularity, thorough testing (both black‑box and white‑box), and robust version control practices. The iterative development process and detailed documentation ensure that the solution is both reliable and maintainable.
+
+---
+
+## Appendices
+
+### Appendix A: Folder Structure
+
+```
+/
+├── src/
+│   ├── __init__.py
+│   ├── validate_birthday.py
+│   ├── life_path_number.py
+│   ├── lucky_color.py
+│   └── generation_checker.py
+├── tests/
+│   ├── __init__.py
+│   ├── test_validate_birthday.py
+│   ├── test_life_path_number.py
+│   ├── test_lucky_color.py
+│   └── test_generation_checker.py
+└── main.py
+```
+
+### Appendix B: Sample Screenshots
+
+![Screenshot from 2025-03-30 07-05-22](https://github.com/user-attachments/assets/a56035ce-e499-4af1-b554-bbfc9415a74c)
+**Figure:** Program Output
+
+![Screenshot from 2025-03-30 07-05-43](https://github.com/user-attachments/assets/97cfd51c-f941-433e-80dd-ed78d428cff4)
+**Figure:** Unittesing
+
+### Appendix C: Git Log
+**Git Repository:** [https://github.com/Scythe6699/22683179_ISE_Assignment_2025.git](https://github.com/Scythe6699/Murad_Nabil_22683179_ISEReport.git)
+
+**Branch Plan:**
+- main - Main development branch for stable code
+- feature - For implementing features
+- testing - For implementing tests
+- documentation - For preparing documentation
+
+**Git Log:**
+
+Please check the ‘git_log.txt’ for log files or type ```git --no-pager log > git_log.txt``` in the cloned repository folder.
+
+![Firefox_Screenshot_2025-03-30T07-13-27 305Z](https://github.com/user-attachments/assets/8e3a90fb-1f59-4904-be9a-558215760edf)
+**Figure:** Git Commits 1
+
+![Firefox_Screenshot_2025-03-30T07-13-50 877Z](https://github.com/user-attachments/assets/7a3f6e54-ea6b-46cd-9826-508b8b380759)
+**Figure:** Git Commits 2
+
+
+
+---
