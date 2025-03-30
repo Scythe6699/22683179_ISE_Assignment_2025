@@ -1,0 +1,282 @@
+commit 17c20f6eaf7991da6c293303a379090962be396a
+Merge: 446327e 2a0f221
+Author: Scythe6699 <nabilm2001@gmail.com>
+Date:   Sat Mar 29 19:43:14 2025 +0000
+
+    Merge pull request #2 from Scythe6699/documentation
+    
+    Update README.md
+
+commit 2a0f22140bf10101e11325ffb8fcd17d31877696
+Author: Scythe6699 <nabilm2001@gmail.com>
+Date:   Sat Mar 29 19:42:13 2025 +0000
+
+    Update README.md
+
+commit 446327e840a10f35aae0be7cfd19de04e2c30bee
+Merge: 2857040 ec0d4c0
+Author: Scythe6699 <nabilm2001@gmail.com>
+Date:   Sat Mar 29 19:32:52 2025 +0000
+
+    Merge pull request #1 from Scythe6699/documentation
+    
+    Add README file to provide project overview and usage instructions
+
+commit ec0d4c0e0310e72d17e29d6514afc1ff414039e9
+Author: Scythe6699 <nabilm2001@gmail.com>
+Date:   Sat Mar 29 19:30:21 2025 +0000
+
+    Add README file to provide project overview and usage instructions
+
+commit 28570402f7b152ed80b125c2a7c8178900e3846f
+Merge: f24a011 c285ad2
+Author: Scythe6699 <nabilm2001@gmail.com>
+Date:   Sat Mar 29 18:40:50 2025 +0000
+
+    Merge branch 'testing'
+
+commit c285ad2ebb52bd19cd2b04bda894a0887c424b77
+Author: Scythe6699 <nabilm2001@gmail.com>
+Date:   Sat Mar 29 18:40:20 2025 +0000
+
+    Add validate_birthday function to validate birthday input format and range
+
+commit 0a6cb707a73bcc1ae357d6323aa15566f5e786fa
+Author: Scythe6699 <nabilm2001@gmail.com>
+Date:   Sat Mar 29 18:40:17 2025 +0000
+
+    Add lucky_color function to return corresponding lucky color based on life path number
+
+commit 942b5c8d7ec85bbbc336ce5607b17a18793639b5
+Author: Scythe6699 <nabilm2001@gmail.com>
+Date:   Sat Mar 29 18:40:11 2025 +0000
+
+    Add life_path_number function to calculate life path numbers based on birth date
+
+commit 2f2275d7c38069a901e737854f9108b5b00bd1c1
+Author: Scythe6699 <nabilm2001@gmail.com>
+Date:   Sat Mar 29 18:40:08 2025 +0000
+
+    Add generation_checker function to determine generational classification based on birth year
+
+commit 973fb8c48f5f36f466f942a440f1d2650717a382
+Author: Scythe6699 <nabilm2001@gmail.com>
+Date:   Sat Mar 29 18:40:00 2025 +0000
+
+    Add __init__.py file to initialize the package
+
+commit 6d3560af9abcb2a6de52bb02750613ec9a4e323f
+Author: Scythe6699 <nabilm2001@gmail.com>
+Date:   Sat Mar 29 18:34:49 2025 +0000
+
+    Add unit tests for validate_birthday function to validate various date formats and edge cases
+
+commit b7dd3ceff5fd571066b9346c3bc962e01b51e268
+Author: Scythe6699 <nabilm2001@gmail.com>
+Date:   Sat Mar 29 18:34:46 2025 +0000
+
+    Add unit tests for main module to validate birthday input handling and output
+
+commit d6d95eae17e173abe6f749052c65f065ef7acce1
+Author: Scythe6699 <nabilm2001@gmail.com>
+Date:   Sat Mar 29 18:34:42 2025 +0000
+
+    Add unit tests for lucky_color function to validate color assignments for regular and master numbers
+
+commit 9fb823abf96e96607a7976081d2c68c6e5a104a4
+Author: Scythe6699 <nabilm2001@gmail.com>
+Date:   Sat Mar 29 18:34:38 2025 +0000
+
+    Add unit tests for life_path_number function to validate calculations and edge cases
+
+commit dcca90762fd99764e75972d37922634ec87fe1a3
+Author: Scythe6699 <nabilm2001@gmail.com>
+Date:   Sat Mar 29 18:34:35 2025 +0000
+
+    Add unit tests for generation_checker function to validate generation categorization
+
+commit bf899a123c829cae86e8c316213698501fa2c104
+Author: Scythe6699 <nabilm2001@gmail.com>
+Date:   Sat Mar 29 18:34:31 2025 +0000
+
+    Add __init__.py to tests directory to enable package imports
+
+commit f24a011765a3cac70953c205b73b994c0415d6f1
+Author: Scythe6699 <nabilm2001@gmail.com>
+Date:   Sat Mar 29 18:28:53 2025 +0000
+
+    Add lucky_color function to map life path numbers to corresponding lucky colors
+
+commit 863fada867d199471bc5f08ff2162ea75b1e217f
+Author: Scythe6699 <nabilm2001@gmail.com>
+Date:   Sat Mar 29 18:28:48 2025 +0000
+
+    Add generation_checker function to categorize birth years by generation
+
+commit 9b5941942e68dcb68321c15e78edcdd37175b96e
+Author: Scythe6699 <nabilm2001@gmail.com>
+Date:   Sat Mar 29 18:28:44 2025 +0000
+
+    Add life_path_number function to calculate numerology life path numbers
+
+commit 3784dc660387fd567d7b16bf7a65224be7dd8a08
+Author: Scythe6699 <nabilm2001@gmail.com>
+Date:   Sat Mar 29 18:28:28 2025 +0000
+
+    Add validate_birthday function to validate date input format and range
+
+commit 0e37aa764138dbd16e22fc9072c5840309833401
+Author: Scythe6699 <nabilm2001@gmail.com>
+Date:   Sat Mar 29 18:27:58 2025 +0000
+
+    Add __init__.py to src directory to mark it as a package
+
+commit 42279549feae5b67d9b44f2974dc260e06255da8
+Author: Scythe6699 <nabilm2001@gmail.com>
+Date:   Sat Mar 29 18:13:04 2025 +0000
+
+    refactoring
+
+commit 0e7ccd301d8291beef86767e195546e4ea34eb20
+Author: Scythe6699 <nabilm2001@gmail.com>
+Date:   Sat Mar 29 14:24:54 2025 +0000
+
+    Remove unnecessary comment from main.py to improve code clarity
+
+commit c29e046f92dde0a1c1c706a4cd63fc925de039d8
+Author: Scythe6699 <nabilm2001@gmail.com>
+Date:   Sat Mar 29 14:23:10 2025 +0000
+
+    Add unit tests for validate_birthday function to ensure correct date validation
+
+commit c4b33f4e4ee25dab497a8443d0e48c7b5b001c3b
+Author: Scythe6699 <nabilm2001@gmail.com>
+Date:   Sat Mar 29 14:23:01 2025 +0000
+
+    Add unit tests for main module to validate birthday input handling and output
+
+commit c1848fd23290cf41cd0cc18e1f0ed80c07933eb0
+Author: Scythe6699 <nabilm2001@gmail.com>
+Date:   Sat Mar 29 14:22:54 2025 +0000
+
+    Add unit tests for lucky_color function to validate color outputs for regular and master numbers
+
+commit c1a6d09cbf154a0617ba7ed4103d5e07e34e9d83
+Author: Scythe6699 <nabilm2001@gmail.com>
+Date:   Sat Mar 29 14:22:49 2025 +0000
+
+    Add unit tests for life_path_number function to ensure accurate calculations
+
+commit 4112b0c8fb04279fa41fc82576c428379bfcdfec
+Author: Scythe6699 <nabilm2001@gmail.com>
+Date:   Sat Mar 29 14:22:46 2025 +0000
+
+    Add unit tests for generation_checker function to validate generation classifications
+
+commit 045e25d01c54e3e8cb1dbeda59fffa96d096fb95
+Author: Scythe6699 <nabilm2001@gmail.com>
+Date:   Sat Mar 29 14:22:36 2025 +0000
+
+    Add __init__.py to tests directory to mark it as a package
+
+commit eede4a365897ecc2b41738ea46e7465393bd0292
+Author: Scythe6699 <nabilm2001@gmail.com>
+Date:   Sat Mar 29 14:22:30 2025 +0000
+
+    Update birthday validation to allow years from 1925 and improve month input handling
+
+commit 92e67cc950db688bbe34e80ffdc2840611e0d2d5
+Author: Scythe6699 <nabilm2001@gmail.com>
+Date:   Sat Mar 29 14:22:26 2025 +0000
+
+    Add validation for Life Path Number in lucky_color function
+
+commit 952859ada2382951b2f67daa978c6258a77e0bf3
+Author: Scythe6699 <nabilm2001@gmail.com>
+Date:   Sat Mar 29 14:21:34 2025 +0000
+
+    Refactor life_path_number function to improve clarity and efficiency in master number handling
+
+commit d770a32094765621d6b1b7f5688ea5261b590648
+Author: Scythe6699 <nabilm2001@gmail.com>
+Date:   Sat Mar 29 14:21:28 2025 +0000
+
+    Add __init__.py to src directory to mark it as a package
+
+commit 974a498e8be9493191b3b84e7330e7ffa6eaf9d0
+Author: Scythe6699 <nabilm2001@gmail.com>
+Date:   Sat Mar 29 14:21:23 2025 +0000
+
+    Refactor main.py to encapsulate logic in main() function and improve module imports
+
+commit 9a2de312882ffa03cc8ac1459d782e124de16c65
+Author: Scythe6699 <nabilm2001@gmail.com>
+Date:   Thu Mar 27 09:49:34 2025 +0000
+
+    Final program
+
+commit a5b40810b8f239fbdea66323e8512593b0af3eec
+Author: Scythe6699 <nabilm2001@gmail.com>
+Date:   Thu Mar 27 09:49:18 2025 +0000
+
+    added luck color function
+
+commit 7625c6782ae0da7d8ad4bb19b13fb113324688fe
+Author: Scythe6699 <nabilm2001@gmail.com>
+Date:   Thu Mar 27 09:49:07 2025 +0000
+
+    minor fix
+
+commit 946f171013c2e28642994b3d097a5454681b002d
+Author: Scythe6699 <nabilm2001@gmail.com>
+Date:   Thu Mar 27 09:28:41 2025 +0000
+
+    generation checker created
+
+commit e090096457ba5107aa2d23248420278c9ae4389b
+Author: Scythe6699 <nabilm2001@gmail.com>
+Date:   Thu Mar 27 09:28:28 2025 +0000
+
+    Minor fix
+
+commit 0e991853f0f4bb84a833ca2ff1f40aa411fff418
+Author: Scythe6699 <nabilm2001@gmail.com>
+Date:   Thu Mar 27 09:19:41 2025 +0000
+
+    Life path algorithms
+
+commit 3b1250e91f3a6eb7f9695357143a1bd5e774e324
+Author: Scythe6699 <nabilm2001@gmail.com>
+Date:   Thu Mar 27 08:59:03 2025 +0000
+
+    Major fixes with complete function
+
+commit c6d8ef962eef95fd17520fa49e3c953b9ee4914e
+Author: Scythe6699 <nabilm2001@gmail.com>
+Date:   Thu Mar 27 08:32:37 2025 +0000
+
+    Check months and abbreviations
+
+commit 7c25bf2c09c630265c3c0d52e1023274d613d351
+Author: Scythe6699 <nabilm2001@gmail.com>
+Date:   Wed Mar 26 17:14:56 2025 +0000
+
+    Added leap year support with other error handelings
+
+commit d5cc8b16ef694aa6703596a20c2821e999137516
+Author: Scythe6699 <nabilm2001@gmail.com>
+Date:   Wed Mar 26 17:02:03 2025 +0000
+
+    Added year validations
+
+commit 687c35b3d28e121cfee490c0527deaf608be3d6a
+Author: Scythe6699 <nabilm2001@gmail.com>
+Date:   Wed Mar 26 16:57:45 2025 +0000
+
+    add birthday validation function with error handling
+
+commit f92dd99c8f5b18cc4e15fc27d829ee401c330cf3
+Author: Scythe6699 <nabilm2001@gmail.com>
+Date:   Wed Mar 26 15:28:02 2025 +0000
+
+    readme
