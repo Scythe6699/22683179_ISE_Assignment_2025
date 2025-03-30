@@ -1,6 +1,6 @@
 # Murad Nabil_22683179_ISEReport
 
-- **Assessment:** Introductionto Software Engineering– ISAD1000/5004 2024 Trimester 1
+- **Assessment:** Introduction to Software Engineering– ISAD1000/5004 2024 Trimester 1
 - **Assignment:** Final Assessment - (Assignment Specification V1)
 - **Student Name:** Nabil Murad  
 - **Student ID:** 22683179 
